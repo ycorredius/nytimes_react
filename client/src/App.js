@@ -1,26 +1,22 @@
 import React from 'react';
 import './App.css';
+import Home from './containters/Home'
 import Signup from './sessions/Signup';
 import Login from "./sessions/Login";
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <Router>
-        <Route exact path="/signup">
-          <Signup/>
-        </Route>
-        <Route exact path="/login">
-          <Login/>
-        </Route>
-      </Router>
-    </div>
+    <Router>
+      <div className="app">
+        <Route exact path="/" component={Home}/>
+        <Route exact path="/signup" component={Signup}/>
+        <Route exact path="/login" component={Login}/>
+      </div>
+    </Router>
   );
 }
 

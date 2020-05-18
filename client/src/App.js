@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import axios from 'axios';
 import Home from './containters/Home'
 import Signup from './sessions/Signup';
 import Login from "./sessions/Login";
@@ -33,8 +32,7 @@ class App extends React.Component{
   }
   
   loginStatus = () => {
-    axios.get('http://localhost:3001/logged_in', 
-   {withCredentials: true})
+    fetch('http://localhost:3001/logged_in')
     .then(response => {
       if (response.data.logged_in) {
         this.handleLogin(response)

@@ -48,7 +48,9 @@ class Login extends React.Component {
           onChange={this.handleOnChange}/>
         </div>
         <br/>
-          <input type="submit"/>
+          <input type="submit"
+          value="Login"
+          />
       </div>
     )
   }

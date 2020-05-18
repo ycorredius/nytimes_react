@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
 import Home from './containters/Home'
-import Signup from './sessions/Signup';
-import Login from "./sessions/Login";
+import Signup from './components/sessions/Signup';
+import Login from "./components/sessions/Login";
+import redux from "redux";
 import {
   BrowserRouter as Router,
   Route

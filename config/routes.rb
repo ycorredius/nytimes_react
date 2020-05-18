@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/logged_in', to: 'sessions#is_logged_in?'
   
-  resources :users, only: [:create, :show, :index]
   
+  namespace :api do
+	  resources :users, only: [:create, :show, :index]
+	  post 'user_token' => 'user_token#create'
+	  post 'find_user' => 'users#find'
+	end
 end

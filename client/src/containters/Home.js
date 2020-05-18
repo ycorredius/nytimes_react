@@ -1,6 +1,6 @@
 import React from 'react';
-import Login from '../sessions/Login'
-import Signup from '../sessions/Signup'
+import Login from '../components/sessions/Login'
+import Signup from '../components/sessions/Signup'
 import {
   BrowserRouter as Router,
   Switch,

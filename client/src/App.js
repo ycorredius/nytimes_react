@@ -18,20 +18,6 @@ class App extends React.Component{
     };
   }
 
-  handleLogin = (data) => {
-    this.setState({
-      isLoggedIn: true,
-      user: data.user
-    })
-  }
-
-  handleLogout = () => {
-    this.setState({
-    isLoggedIn: false,
-    user: {}
-    })
-  }
-
   componentDidMount() {
     this.loginStatus()
   }

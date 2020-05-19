@@ -19,8 +19,13 @@ class Signup extends React.Component{
     })
   }
 
-  handleOnSubmit = (event) => {
-    event.preventDefault();
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (this.props.signup(this.state)) {
+      this.props.history.push('/user_profile')
+    } else {
+      window.alert("Something went wrong. Please try again.")
+    }
   }
   
   render(){

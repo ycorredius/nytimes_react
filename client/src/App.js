@@ -18,10 +18,6 @@ class App extends React.Component{
     };
   }
 
-  componentDidMount() {
-    this.loginStatus()
-  }
-
   render() {
     return (
       <div className="app">

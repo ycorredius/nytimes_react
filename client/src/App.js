@@ -31,18 +31,6 @@ class App extends React.Component{
     user: {}
     })
   }
-  
-  loginStatus = () => {
-    fetch('http://localhost:3001/logged_in')
-    .then(response => {
-      if (response.data.logged_in) {
-        this.handleLogin(response)
-      } else {
-        this.handleLogout()
-      }
-    })
-    .catch(error => console.log('api errors:', error))
-  }
 
   componentDidMount() {
     this.loginStatus()

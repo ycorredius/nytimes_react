@@ -21,7 +21,6 @@ gem 'foreman', '~> 0.87.1'
 gem 'pry-rails'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'knock'
-gem 'jwt'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

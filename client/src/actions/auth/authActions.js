@@ -1,15 +1,15 @@
-import React from 'react';
-import fetch from 'isomorphic-fetch';
-import {API_URL} from './apiUrl';
-import * from './actionTypes';
+import * as types from './actionTypes';
+import axios from 'axios';
 
- const authRequest = () => {
+const API_URL = "http://localhost:3001"
+
+export const authRequest = () => {
     return {
       type: types.AUTHENTICATION_REQUEST
     }
   }
 
-const authSuccess = (user, token) => {
+export const authSuccess = (user, token) => {
   return {
     type: types.AUTHENTICATION_SUCCESS,
     user: user,
@@ -27,27 +27,32 @@ const authFailure = (errors) => {
 export const signup = (user) => {
   const newUser = user
   return dispatch => {
-    return fetch(`${API_URL}/users`, {
-      method: "POST",
-      headers: {
-        "Accept":"application/json",
-        "Content-Type":"application/json"
-      },
-      body: JSON.stringify({user: user})
-    })
-      .then(response => response.json())
-      .then(jresp => {
-        dispatch(authenticate({
-          firstName: newUser.firstName,
-          lastName: newUser.lastName,
-          email: newUser.email,
-          password: newUser.password,
-      	  password_confirmation: newUser.password_confirmation})
+    return axios.post(`http://localhost:3001/users`,{user},{withCredentials:true})
+    // return fetch(`http://localhost:3001/users`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Accept": "application/json",
+    //   },
+    //   body: JSON.stringify(newUser),
+    //   credentials: "include"
+    // })
+      .then((response) => {
+        debugger;
+        response.json();
+      })
+      .then((resp) => {
+        dispatch(
+          authenticate({
+            email: newUser.email,
+            password: newUser.password,
+            password_confirmation: newUser.password_confirmation,
+          })
         );
       })
       .catch((errors) => {
-        dispatch(authFailure(errors))
-      })
+        dispatch(authFailure(errors));
+      });
   };
 }
 
@@ -63,6 +68,7 @@ export const authenticate = (credentials) => {
     })
       .then(res => res.json())
       .then((response) => {
+          debugger;
           const token = response.jwt;
           localStorage.setItem('token', token);
           return getUser(credentials)
@@ -83,7 +89,7 @@ export const getUser = (credentials) => {
     method: "POST",
     headers: new Headers({
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.token}`,
+      Authorization: `Bearer ${localStorage.token}`,
     }),
     body: JSON.stringify({user: credentials})
   })

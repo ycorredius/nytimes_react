@@ -1,11 +1,5 @@
 class UsersController < ApplicationController
- 
-    before_action :set_user, only: [:show, :update]
-
-  def index
-    @users = User.all
-    render json: @users
-  end
+  before_action :set_user, only: [:show, :update]
 
   def create
     @user = User.new(user_params)

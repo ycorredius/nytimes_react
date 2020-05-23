@@ -1,55 +1,42 @@
 class SessionsController < ApplicationController
-  # before_action :authenticate_user
-  # skip_before_action :authenticate_user, only: [:create]
-  before_action :set_user, only: [:show, :update]
-
-  def index
-    @users = User.all
-    render json: @users
-  end
-
   def create
-    @user = User.new(user_params)
-    if @user.valid? && @user.save
-      render json: @user
+    @user = User.find_by(email: session_params[:email])
+  
+    if @user && @user.authenticate(session_params[:password])
+      login!
+      render json: {
+        logged_in: true,
+        user: @user
+      }
     else
-      render json: @user.errors, status: 400
+      render json: { 
+        status: 401,
+        errors: ['no such user', 'verify credentials and try again or signup']
+      }
     end
   end
-
-  def show
-    render json: @user
-  end
-
-  def update
-    if @user.update(user_params)
-      render json: @user
+def is_logged_in?
+    if logged_in? && current_user
+      render json: {
+        logged_in: true,
+        user: current_user
+      }
     else
-      render json: @user.errors, status: 400
+      render json: {
+        logged_in: false,
+        message: 'no such user'
+      }
     end
   end
-
-  def destroy
-    @user.destroy
+def destroy
+    logout!
+    render json: {
+      status: 200,
+      logged_out: true
+    }
   end
-
-  def find
-   @user = User.find_by(email: params[:user][:email])
-   if @user
-     render json: @user
-   else
-     @errors = @user.errors.full_messages
-     render json: @errors
-   end
+private
+def session_params
+    params.require(:user).permit(:username, :email, :password)
   end
-
-  private
-
-    def set_user
-      @user = User.find_by(id: params[:id])
-    end
-
-    def user_params
-      params.require(:user).permit(:email, :password)
-    end
 end

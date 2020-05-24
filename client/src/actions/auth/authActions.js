@@ -42,11 +42,11 @@ export const signup = (user) => {
         response.json();
       })
       .then((resp) => {
+        debugger; 
         dispatch(
           authenticate({
             email: newUser.email,
-            password: newUser.password,
-            password_confirmation: newUser.password_confirmation,
+            password: newUser.password
           })
         );
       })
@@ -59,7 +59,7 @@ export const signup = (user) => {
 export const authenticate = (credentials) => {
   return dispatch => {
     dispatch(authRequest())
-    return fetch(`${API_URL}/user_token`, {
+    return fetch(`${API_URL}/logged_in`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

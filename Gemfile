@@ -18,9 +18,11 @@ gem 'puma', '~> 4.1'
 gem 'bcrypt', '~> 3.1.7'
 gem 'thor', '~> 1.0', '>= 1.0.1'
 gem 'foreman', '~> 0.87.1'
-# gem 'pry-rails'
+gem 'pry-rails'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'knock'
+gem 'fast_jsonapi'
+gem 'jwt'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

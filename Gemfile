@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.1'
+ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3'
@@ -15,17 +15,18 @@ gem 'puma', '~> 4.1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+# gem 'bcrypt', '~> 3.1.7'
 gem 'thor', '~> 1.0', '>= 1.0.1'
 gem 'foreman', '~> 0.87.1'
 gem 'pry-rails'
 gem 'dotenv-rails', groups: [:development, :test]
-gem 'knock'
-gem 'fast_jsonapi'
-gem 'jwt'
+# gem 'knock'
+# gem 'fast_jsonapi'
+# gem 'jwt'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+gem 'figaro'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 

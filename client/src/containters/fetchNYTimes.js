@@ -1,5 +1,2 @@
-import React from 'react';
-
-const endpoint = 'https://api.nytimes.com/svc/'
+export const END_POINT = 'https://api.nytimes.com/svc/';
  
-// fetch(endpoints)

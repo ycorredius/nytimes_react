@@ -35,4 +35,4 @@ class BookContainer extends React.Component{
     }
 }
 
-export default connect(null,)(BookContainer)
+export default BookContainer;

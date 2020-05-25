@@ -1,10 +1,9 @@
-import {Component} from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
 import axios from 'axios';
-import apiKey from '../../actions/auth/apiKey'
-import END_POINT from '../../actions/nytimes/fetchNYTimes'
-import * as types from '../../actions/nytimes/bookactions'
+import {API_URL} from '../../actions/auth/api_url'
 
-class BookContainer extends Component{
+class BookContainer extends React.Component{
     constructor(){
         super();
         this.state ={
@@ -12,13 +11,19 @@ class BookContainer extends Component{
         };
     }
 
-    fetchBestSellers = () =>{
-        return axios.get(`https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${apiKey}`)
+    componentDidMount(){
+        fetch(`https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=XihJWvP2gaOgCgR3onpTKeXRp5LTVAQQ`)
             .then(response => response.json())
-            .then(resp => {
-                debugger;
+            .then(resp => resp.results.books)
+            .then(data => {
+              return this.setState({
+                  books: data
+              })
             })
+
+        console.log(this.state)
     }
+    
 
     render(){
         return(
@@ -30,4 +35,4 @@ class BookContainer extends Component{
     }
 }
 
-export default BookContainer;
+export default connect(null,)(BookContainer)

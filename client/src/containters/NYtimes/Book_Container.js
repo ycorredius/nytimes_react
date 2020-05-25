@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import BestsellerBook from '../../components/nytimes_books/bestsellerBooks'
 import axios from 'axios';
 import {API_URL} from '../../actions/auth/api_url'
 
@@ -29,7 +30,9 @@ class BookContainer extends React.Component{
         return(
             <div>
                 <h1>Current NY Times Best Sellers</h1>
-                
+                <ul>
+                    {this.state.books.map(book => <BestsellerBook book={book}/>)}
+                </ul>
             </div>
         )
     }

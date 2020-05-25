@@ -1,19 +1,19 @@
 import React from 'react';
 
-const bestsellerBook = () => {
+const BestsellerBook = props => {
     return (
         <div>
             <ul>
-                <p>Rank: {this.props.rank}</p>
-                <p>Rank Last Week: {this.props.rank_last_week}</p>
-                <p>Title: {this.props.title}</p>
-                <p>Author: {this.props.author}</p>
-                <p>Publisher: {this.props.publisher}</p>
-                <p>Description: {this.props.description}</p>
-                <img src={this.props.book_image}/>
+                <p>Rank: {props.book.rank}</p>
+                <p>Rank Last Week: {props.book.rank_last_week}</p>
+                <p>Title: {props.book.title}</p>
+                <p>Author: {props.book.author}</p>
+                <p>Publisher: {props.book.publisher}</p>
+                <p>Description: {props.book.description}</p>
+                <img src={props.book.book_image}/>
             </ul>
         </div>
     )
 }
 
-export default bestsellerBook;
+export default BestsellerBook;

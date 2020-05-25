@@ -9,7 +9,7 @@ export const fetchNYTimesBooks = () => {
         return axios.get(`${END_POINT}/books/v3/lists.json?${apiKey}`)
             .then(respone => respone.json())
             .then(resp => {
-                debugger
+                debugger``
             })
     }
 }

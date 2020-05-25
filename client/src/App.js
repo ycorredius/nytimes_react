@@ -8,6 +8,7 @@ import {
 } from "./actions/auth/authActions";
 import Login from "./components/auth/Login";
 import Signup from './components/auth/Signup';
+import { fetchNYTimesBooks } from './actions/nytimes/bookactions'
 import BooksContainer from './containters/NYtimes/Book_Container'
 import {
   BrowserRouter as Router,
@@ -22,8 +23,10 @@ class App extends React.Component{
         <Router>
             <div>
               <Route exact path={"/bestsellers"} 
-              render={() => <BooksContainer/>} />
+              render={() => <BooksContainer fetchBooks={fetchNYTimesBooks}/>} />
+
               <Route exact path={"/"} component={Home}/>
+
               <Route exact path={"/signup"} 
               render={()=> <Signup signup={signup}/>} />
             <Route exact path={"/login"} component={Login} />

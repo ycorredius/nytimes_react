@@ -1,1 +1,2 @@
 export const UPDATEBOOKS = 'UPDATEBOOKS'
+export const LOADBOOKS = 'LOADBOOKS'

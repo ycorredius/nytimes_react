@@ -4,14 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware, compose } from 'redux';
-import logger from 'redux-logger'
-import  authReducer  from "./actions/auth/authReducer";
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import { rootReducer } from "./actions/index";
 
 const store = createStore(
-	authReducer,
-	compose(applyMiddleware(thunk,logger),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+	rootReducer,
+	compose(applyMiddleware(thunk),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 )
 
 ReactDOM.render(

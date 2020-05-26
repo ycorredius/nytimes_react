@@ -4,5 +4,5 @@ import bookReducer from "./nytimes/bookReducer";
 
 export const rootReducer = combineReducers({
     authReducer,
-    bookReducer: null
+    bookReducer
 })

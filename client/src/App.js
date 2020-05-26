@@ -1,5 +1,6 @@
-import React,{Component} from 'react';
+import React from 'react';
 import './App.css';
+import { connect } from 'react-redux';
 import Home from './containters/Home';
 import {
   signup,
@@ -17,13 +18,17 @@ import {
 
 class App extends React.Component{
 
+  componentDidMount(){
+    fetchNYTimesBooks(this.state)
+  }
+
   render() {
     return (
       <div className="app">
         <Router>
             <div>
               <Route exact path={"/bestsellers"} 
-              render={() => <BooksContainer fetchBooks={fetchNYTimesBooks}/>} />
+              render={() => <BooksContainer/>} />
 
               <Route exact path={"/"} component={Home}/>
 
@@ -37,4 +42,4 @@ class App extends React.Component{
   };
 }
 
-export default App;
+export default connect(null,fetchNYTimesBooks)(App)

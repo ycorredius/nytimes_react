@@ -11,9 +11,6 @@ class BookContainer extends React.Component{
         };
     }
 
-    componentDidMount(){
-       fetchNYTimesBooks(this.state)
-    }
     
 
     render(){
@@ -27,6 +24,7 @@ class BookContainer extends React.Component{
         )
     }
 }
+
 
 
 export default connect(null,fetchNYTimesBooks)(BookContainer)

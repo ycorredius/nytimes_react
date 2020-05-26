@@ -4,9 +4,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.valid? && @user.save
-      options={}
-      options[:include] = [:email,:password]
-      render json: UserSerializer.new(@user,options).serialzed_json
+      render json: UserSerializer.new(@user).serialized_json
     else
       render json: @user.errors, status: 400
     end

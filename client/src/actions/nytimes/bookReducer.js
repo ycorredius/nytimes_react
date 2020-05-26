@@ -1,12 +1,13 @@
 import * as types from './bookActionTypes';
 
-const initialState = {
-    books: []
-}
-
-export default (state = initialState, action) => {
-    switch (action.types) {
-
-    
+export default (state = [], action) => {
+    switch (action.type) {
+        case types.LOADBOOKS:
+            return{
+                ...state,
+                books: action.books
+            }
+        default: 
+            return state
     }
 }

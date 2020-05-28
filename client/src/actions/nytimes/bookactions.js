@@ -12,7 +12,7 @@ export const loadbooks = (books) => {
 
 export const fetchNYTimesBooks = () => {
     return dispatch => {
-        return axios.get(`${END_POINT}/books/v3/lists/best-sellers/history.json?api-key=${API_URL}`)
+        return axios.get(`${END_POINT}/books/v3/lists/current/hardcover-fiction.json?api-key=${API_URL}`)
             .then(response => response.data.results)
             .then(res =>
                 dispatch(loadbooks(res)))

@@ -6,25 +6,32 @@ import { connect } from 'react-redux';
 class BookContainer extends React.Component{
     constructor(props){
         super(props);
-        this.state ={
-            books: []
-        };
     }
 
-    
-
     render(){
+        if(!this.props.books){
+            return(
+                <div>
+                    
+                </div>
+            )
+        } else {
         return(
             <div>
                 <h1>Current NY Times Best Sellers</h1>
                 <ul>
-                    {this.state.books.map(book => <BestsellerBook book={book}/>)}
+                    {this.props.books.books.map(book => <BestsellerBook book={book}/>)}
                 </ul>
             </div>
-        )
+        )}
+    }
+}
+
+const mapStateToProps = (state) => {
+    return{
+        books: state.bookReducer.books
     }
 }
 
 
-
-export default connect(null,fetchNYTimesBooks)(BookContainer)
+export default connect(mapStateToProps,fetchNYTimesBooks)(BookContainer)

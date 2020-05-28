@@ -1,6 +1,7 @@
 import React from 'react';
 
 const BestsellerBook = props => {
+    debugger
     return (
         <div>
             <ul>
@@ -10,7 +11,7 @@ const BestsellerBook = props => {
                 <p>Author: {props.book.author}</p>
                 <p>Publisher: {props.book.publisher}</p>
                 <p>Description: {props.book.description}</p>
-                <img src={props.book.book_image}/>
+                <img src={props.book.book_image} alt="books cover"/>
             </ul>
         </div>
     )

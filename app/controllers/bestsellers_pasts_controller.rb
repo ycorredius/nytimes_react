@@ -1,0 +1,2 @@
+class BestsellersPastsController < ApplicationController
+end

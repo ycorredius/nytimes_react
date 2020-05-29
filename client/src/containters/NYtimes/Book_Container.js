@@ -1,15 +1,13 @@
 import React from 'react';
 import BestsellerBook from '../../components/nytimes_books/bestsellerBooks';
+import BestsellerPast from '../../components/nytimes_books/bestsellerPast'
 import { fetchNYTimesBooks} from '../../actions/nytimes/bookactions'
 import { connect } from 'react-redux';
 
 class BookContainer extends React.Component{
-    constructor(props){
-        super(props);
-    }
 
     render(){
-        if(!this.props.books){
+        if(!this.props.books_past){
             return(
                 <div>
                     
@@ -20,7 +18,7 @@ class BookContainer extends React.Component{
             <div>
                 <h1>Current NY Times Best Sellers</h1>
                 <ul>
-                    {this.props.books.books.map(book => <BestsellerBook book={book}/>)}
+                    {this.props.books_past.map(book => <BestsellerPast book={book}/>)}
                 </ul>
             </div>
         )}
@@ -29,7 +27,7 @@ class BookContainer extends React.Component{
 
 const mapStateToProps = (state) => {
     return{
-        books: state.bookReducer.books
+        books_past: state.bookReducer.books_past
     }
 }
 

@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_28_155447) do
+ActiveRecord::Schema.define(version: 2020_05_29_152245) do
+
+  create_table "bestsellers_lists", force: :cascade do |t|
+    t.string "list_name"
+    t.string "list_name_encoded"
+    t.date "oldest_published_date"
+    t.date "newest_published_date"
+    t.string "updated"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "bestsellers_pasts", force: :cascade do |t|
     t.string "author"
@@ -20,6 +30,8 @@ ActiveRecord::Schema.define(version: 2020_05_28_155447) do
     t.string "contributor"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "bestsellers_list_id", null: false
+    t.index ["bestsellers_list_id"], name: "index_bestsellers_pasts_on_bestsellers_list_id"
   end
 
   create_table "rank_histories", force: :cascade do |t|
@@ -44,5 +56,6 @@ ActiveRecord::Schema.define(version: 2020_05_28_155447) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "bestsellers_pasts", "bestsellers_lists"
   add_foreign_key "rank_histories", "bestsellers_pasts"
 end

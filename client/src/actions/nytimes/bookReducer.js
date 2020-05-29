@@ -5,7 +5,7 @@ export default (state = [], action) => {
         case types.LOADBOOKS:
             return{
                 ...state,
-                books: action.books
+                books_past: action.books_past
             }
         default: 
             return state

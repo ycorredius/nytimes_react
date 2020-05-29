@@ -1,2 +1,2 @@
-export const END_POINT = 'https://api.nytimes.com/svc';
+export const END_POINT = 'http://localhost:3000';
  

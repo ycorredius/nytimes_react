@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  list_name: MyString
+  list_name_encoded: MyString
+  oldest_published_date: 2020-05-29
+  newest_published_date: 2020-05-29
+  updated: MyString
+
+two:
+  list_name: MyString
+  list_name_encoded: MyString
+  oldest_published_date: 2020-05-29
+  newest_published_date: 2020-05-29
+  updated: MyString

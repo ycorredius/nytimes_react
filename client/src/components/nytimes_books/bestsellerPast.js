@@ -1,17 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import BestsellerPastCard from './bestsellerPastCard'
 
-const BestsellerPast = props => {
+const BestsellerPast = (props) => {
+    if(!props.books){
+        return(
+            <div></div>
+        )
+    }
+    else{
     return (
         <div>
-            <ul>
-                <p>Title: {props.book.title}</p>
-                <p>Author: {props.book.author}</p>
-                <p>Description: {props.book.description}</p>
-                <p>Contributor: {props.book.contributor}</p>
-                <p>Publisher: {props.book.publisher}</p>
-            </ul>
+            {props.books.map(book => <BestsellerPastCard book={book} handleClick={props.handleClick}/>)}
         </div>
-    )
+    )}
 }
 
 export default BestsellerPast;

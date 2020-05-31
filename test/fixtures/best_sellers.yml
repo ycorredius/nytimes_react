@@ -1,0 +1,33 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author: MyString
+  title: MyString
+  publisher: MyString
+  description: MyString
+  publisher: MyString
+  contributor: MyString
+  amazon_product_url: MyString
+  book_review_link: MyString
+  first_chapter_link: MyString
+  sunday_review_link: MyString
+  article_chapter_link: MyString
+  bestseller_date: 2020-05-30
+  published_date: 2020-05-30
+  rank: 1
+
+two:
+  author: MyString
+  title: MyString
+  publisher: MyString
+  description: MyString
+  publisher: MyString
+  contributor: MyString
+  amazon_product_url: MyString
+  book_review_link: MyString
+  first_chapter_link: MyString
+  sunday_review_link: MyString
+  article_chapter_link: MyString
+  bestseller_date: 2020-05-30
+  published_date: 2020-05-30
+  rank: 1

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {END_POINT} from './end_point'
-import {API_URL} from '../auth/api_url'
 import * as types from '../../actions/nytimes/bookActionTypes'
 
 export const loadbooks = (books_past) => {
@@ -10,12 +9,28 @@ export const loadbooks = (books_past) => {
     }
 }
 
+export const showBestSellerBook = (book_data) =>{
+    return {
+        type: types.SHOW_BEST_SELLER_BOOK,
+        book_data: book_data
+    }
+}
+
 export const fetchNYTimesBooks = () => {
     return dispatch => {
-        return axios.get(`${END_POINT}/bestsellers_pasts`)
+        return axios.get(`${END_POINT}/best_sellers`)
             .then(response => response.data)
             .then(res =>
                 dispatch(loadbooks(res)))
+    }
+}
+
+export const fetchBook = (bookData) => {
+    return dispatch => {
+        return axios.get(`${END_POINT}/best_sellers/${bookData}`)
+        .then(response => response.data)
+        .then(res =>
+            dispatch(showBestSellerBook(res)))
     }
 }
 

@@ -10,7 +10,7 @@ export default (state = [], action) => {
         case types.SHOW_BEST_SELLER_BOOK:
             return{
                 ...state,
-                book_data: action.book_data
+                book: action.bookShow
             }
         default: 
             return state

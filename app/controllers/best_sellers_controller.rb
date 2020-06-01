@@ -5,9 +5,8 @@ class BestSellersController < ApplicationController
     end
 
     def show
-        binding.pry
-        best_seller = BestSeller.find_by(id: params)
-        if best_sellers
+        best_seller = BestSeller.find_by(id: params[:id])
+        if best_seller
             render json: BestSellerSerializer.new(best_seller).serialized_json
         else
             render json: best_seller.errors.full_messages

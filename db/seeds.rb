@@ -6,10 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# list = Api.listsNameRequest
-# list.values[3].each do |p|
-#     BestsellersList.create(list_name: p["list_name"], list_name_encoded: p["list_name_encoded"], oldest_published_date: p["oldest_published_date"], newest_published_date: p["newest_published_date"])
-# end
+list = Api.listsNameRequest
+list.values[3].each do |p|
+    BestsellersList.create(list_name: p["list_name"], list_name_encoded: p["list_name_encoded"], oldest_published_date: p["oldest_published_date"], newest_published_date: p["newest_published_date"])
+end
 
 # bestsellers_past = Api.bestsellersRequest
 # bestsellers_past.values[3].each do |p|

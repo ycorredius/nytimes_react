@@ -9,12 +9,14 @@ export const loadbooks = (books_past) => {
     }
 }
 
-export const showBestSellerBook = (book_data) =>{
+export const showBestSellerBook = (bookShow) =>{
     return {
         type: types.SHOW_BEST_SELLER_BOOK,
-        book_data: book_data
+        bookShow: bookShow
     }
 }
+
+
 
 export const fetchNYTimesBooks = () => {
     return dispatch => {
@@ -27,10 +29,9 @@ export const fetchNYTimesBooks = () => {
 
 export const fetchBook = (bookData) => {
     return dispatch => {
-        return axios.get(`${END_POINT}/best_sellers/${bookData}`)
-        .then(response => response.data)
-        .then(res =>
-            dispatch(showBestSellerBook(res)))
-    }
+            return axios.get(`${END_POINT}/best_sellers/${bookData}`)
+            .then(response => response.data)
+            .then(res => {dispatch(showBestSellerBook(res))})
+        }
 }
 

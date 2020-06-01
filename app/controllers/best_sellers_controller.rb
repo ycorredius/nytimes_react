@@ -11,5 +11,6 @@ class BestSellersController < ApplicationController
             render json: BestSellerSerializer.new(best_seller).serialized_json
         else
             render json: best_seller.errors.full_messages
+        end
     end
 end

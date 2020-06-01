@@ -7,7 +7,7 @@ class BestsellerShow extends React.Component{
         super(props);
     }
     componentDidMount(){
-        debugger
+        
     }
 
     render(){
@@ -20,6 +20,7 @@ class BestsellerShow extends React.Component{
     const mapStateToProps = (state) => {
         return{
             book_data: state.bookReducer.book_data
+            book: state.bookReducer.book
         }
     }
 

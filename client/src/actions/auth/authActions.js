@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 import axios from 'axios';
 
-const API_URL = "http://localhost:3001"
+const API_URL = "http://localhost:3000"
 
 export const authRequest = () => {
     return {
@@ -9,11 +9,11 @@ export const authRequest = () => {
     }
   }
 
-export const authSuccess = (user, token) => {
+export const authSuccess = (user) => {
   return {
     type: types.AUTHENTICATION_SUCCESS,
-    user: user,
-    token: token
+    user: user.user,
+    logged_in: user.logged_in
   }
 }
 
@@ -24,19 +24,24 @@ const authFailure = (errors) => {
   }
 }
 
+const authSessionStatus = (user) => {
+  return {
+    type: types.AUTHENTICATION_SESSION_STATUS,
+    user: user.user,
+    logged_in: user.logged_in
+  }
+}
+
 export const signup = (user) => {
   const newUser = user
   return dispatch => {
-    return axios.post(`http://localhost:3001/users`,{user},{withCredentials:true})
-      .then((response) => {
-        response.json();
-      })
-      .then((resp) => {
-        debugger; 
-        dispatch(
+    return axios.post(`${API_URL}/users`,{user},{withCredentials:true})
+      .then(({data}) => { 
+        const {email, password} = data.data.attributes
+        return dispatch(
           authenticate({
-            email: newUser.email,
-            password: newUser.password
+            email, 
+            password
           })
         );
       })
@@ -48,47 +53,26 @@ export const signup = (user) => {
 
 export const authenticate = (credentials) => {
   return dispatch => {
-    dispatch(authRequest())
-    return fetch(`${API_URL}/logged_in`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({auth: credentials})
-    })
-      .then(res => res.json())
-      .then((response) => {
-          debugger;
-          const token = response.jwt;
-          localStorage.setItem('token', token);
-          return getUser(credentials)
-      })
-      .then((user) => {
-        console.log(user)
-          dispatch(authSuccess(user, localStorage.token))
+    return axios.post(`${API_URL}/login`,{credentials},{withCredentials:true})
+      .then(({data}) => {
+        return dispatch(authSuccess(data))
       })
       .catch((errors) => {
           dispatch(authFailure(errors))
-          localStorage.clear()
       })
   }
 }
 
-export const getUser = (credentials) => {
-  const request = new Request(`${API_URL}/find_user`, {
-    method: "POST",
-    headers: new Headers({
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.token}`,
-    }),
-    body: JSON.stringify({user: credentials})
-  })
-  return fetch(request)
-    .then(response => response.json())
-    .then(userJson => {return userJson})
-    .catch(error => {
-      return error;
-    });
+export const sessionStatus = () => {
+  return dispatch => {
+    return axios.get(`${API_URL}/logged_in`,{withCredentials:true})
+    .then(({data}) => {
+      return dispatch(authSessionStatus(data))
+    })
+    .catch((errors) => {
+      dispatch(authFailure(errors))
+    })
+  }
 }
 
 export const logout = () => {

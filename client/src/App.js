@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Routes from './components/Routes'
 import {fetchNYTimesBooks} from './actions/nytimes/bookactions'
 import {BrowserRouter as Router} from "react-router-dom";
+import BookContainer from './containers/bookContainer'
+import UserContainer from './containers/userContainer'
 
 class App extends React.Component{
 
@@ -17,6 +19,7 @@ class App extends React.Component{
         <Router>
             <div>
              <Routes/>
+             <UserContainer/>
             </div>
         </Router>
       </div>

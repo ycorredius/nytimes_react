@@ -27,11 +27,8 @@ class Signup extends React.Component{
   handleOnSubmit = (e) => {
     e.preventDefault();
     this.props.signup(this.state)
-    // if (this.props.signup(this.state)) {
-    //   window.alert("Thank you for signing up.")
-    // } else {
-    //   window.alert("We're having issues creating your account.")
-    // }
+      .then(() => {
+        this.props.history.push("/")})
   }
 
   

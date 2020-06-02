@@ -1,10 +1,11 @@
 import React from 'react';
+import {connect} from 'react-redux'
+import {authenticate} from '../../actions/auth/authActions'
 
 class Login extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      firstName:'',
       email:'',
       password:'',
       errors:''
@@ -12,7 +13,6 @@ class Login extends React.Component {
   }
 
   handleOnChange = (event) => {
-    debugger;
     const {name,value} =  event.target
     this.setState({
       [name]: value
@@ -20,14 +20,10 @@ class Login extends React.Component {
   }
 
   handleSubmit = (e) => {
-    debugger;
     e.preventDefault();
-    if (this.props.authenticate(this.state)) {
-      this.props.history.push('/user_profile')
-      window.alert("You're Logged In!")
-    } else {
-      window.alert("Sorry, something went wrong. Please try logging in again.")
-    }
+    this.props.authenticate(this.state)
+      .then(() => {
+        this.props.history.push("/dashboard")})
   }
 
   render(){
@@ -64,4 +60,4 @@ class Login extends React.Component {
     )
   }
 }
- export default Login;
+ export default connect(null,{authenticate})(Login);

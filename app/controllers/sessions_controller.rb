@@ -1,11 +1,9 @@
 class SessionsController < ApplicationController
-  before_action :authenticate_user
+  # before_action :authenticate_user
 
   def create
+    
     @user = User.find_by(email: session_params[:email])
-    
-    binding.pry
-    
     if @user && @user.authenticate(session_params[:password])
       login!
       render json: {
@@ -23,7 +21,8 @@ class SessionsController < ApplicationController
 def is_logged_in?
     if logged_in? && current_user
       render json: {
-        user: current_user
+        user: current_user,
+        logged_in: true
       }
     else
       render json: {
@@ -41,6 +40,6 @@ def destroy
   end
 private
 def session_params
-    params.require(:user).permit(:email, :password)
+    params.require(:credentials).permit(:email, :password)
   end
 end

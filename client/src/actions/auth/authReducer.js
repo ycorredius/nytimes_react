@@ -1,44 +1,37 @@
 import * as types from './actionTypes';
 
 	const initialState = {
-	  isAuthenticated: false,
-	  isAuthenticating: false,
+	  logged_in: false,
 	  currentUser: {},
-	  token: null,
 	  errors: []
 	}
 
 	export default (state = initialState, action) => {
     switch(action.type) {
-    	case types.AUTHENTICATION_REQUEST:
-    		return{
-    			...state, 
-    			isAuthenticating: true
-    		}
      	case types.AUTHENTICATION_SUCCESS:
      		return{
      			...state,
-     			isAuthenticated: true,
-     			isAUthenticating: false,
-     			currentUser: action.user,
-     			token: action.token
+     			logged_in: action.logged_in,
+     			currentUser: action.user
      		}
      	case types.AUTHENTICATION_FAILURE:
      		return{
           ...state,
-     			isAuthenticated: false,
-     			isAUthenticating: false,
+     			logged_in: action.logged_in,
      			currentUser: {},
-     			token: null,
      			errors: action.errors || []
      		}
+        case types.AUTHENTICATION_SESSION_STATUS:
+            return{
+                    ...state,
+                logged_in: action.logged_in,
+                currentUser: action.user
+            }
      	case types.LOGOUT:
      		return{
      			...state,
-     			isAuthenticated: false,
-     			isAUthenticating: false,
-     			currentUser: {},
-     			token: null
+     			logged_in: false,
+     			currentUser: {}
      		}
       default: 
         return state

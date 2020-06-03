@@ -3,7 +3,7 @@ import {END_POINT} from './end_point'
 import * as types from '../../actions/nytimes/bookActionTypes'
 
 export const loadbooks = (books_past) => {
-    return {    
+    return {
         type: types.LOADBOOKS,
         books_past: books_past
     }
@@ -34,4 +34,3 @@ export const fetchBook = (bookData) => {
             .then(res => {dispatch(showBestSellerBook(res))})
         }
 }
-

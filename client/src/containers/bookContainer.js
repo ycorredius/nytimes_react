@@ -1,15 +1,19 @@
 import React from 'react';
-import BestsellerBook from '../components/nytimes_books/bestsellerBooks';
-import BestsellerPast from '../components/nytimes_books/bestsellerPast'
+import BestsellerBook from '../components/nytimesBooks/bestsellerBook';
+import BestsellerPast from '../components/nytimesBooks/bestsellerPast'
 import { fetchNYTimesBooks, fetchBook} from '../actions/nytimes/bookactions'
 import { connect } from 'react-redux';
 
 class BookContainer extends React.Component{
+  componentDidMount(){
+    fetchNYTimesBooks(this.state)
+  }
     handleClick = (e) => {
         this.props.fetchBook(e.target.dataset.target)
     }
 
     render(){
+
         if(!this.props.books_past){
             return(<div></div>)
         } else {

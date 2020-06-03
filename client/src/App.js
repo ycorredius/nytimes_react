@@ -6,20 +6,17 @@ import {fetchNYTimesBooks} from './actions/nytimes/bookactions'
 import {BrowserRouter as Router} from "react-router-dom";
 import BookContainer from './containers/bookContainer'
 import UserContainer from './containers/userContainer'
+import {sessionStatus} from './actions/auth/authActions'
 
 class App extends React.Component{
-
-  componentDidMount(){
-    fetchNYTimesBooks(this.state)
-  }
-
-  render() {
+  render(){
     return (
       <div className="app">
         <Router>
             <div>
              <Routes/>
              <UserContainer/>
+             <BookContainer/>
             </div>
         </Router>
       </div>
@@ -27,4 +24,6 @@ class App extends React.Component{
   };
 }
 
-export default connect(null,fetchNYTimesBooks)(App)
+
+
+export default connect(null,{fetchNYTimesBooks})(App)

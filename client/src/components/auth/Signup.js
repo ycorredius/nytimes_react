@@ -14,7 +14,7 @@ class Signup extends React.Component{
       password_confirmation: '',
       signUpErrors: ""
     }
-    
+
   }
 
   handleOnChange = (event) => {
@@ -28,10 +28,10 @@ class Signup extends React.Component{
     e.preventDefault();
     this.props.signup(this.state)
       .then(() => {
-        this.props.history.push("/")})
+        this.props.history.push("/dashboard")})
   }
 
-  
+
   render(){
     const {firstName,lastName,email,password,password_confirmation} = this.state
     return(
@@ -48,7 +48,7 @@ class Signup extends React.Component{
           <br/>
           <div>
             <label>Last Name: </label>
-            <input type="text" 
+            <input type="text"
             name="lastName"
             value={lastName}
             onChange={this.handleOnChange}

@@ -18,8 +18,8 @@ class App extends React.Component{
       <div className="app">
         <Router>
             <div>
+            <UserContainer/>
              <Routes/>
-             <UserContainer/>
             </div>
         </Router>
       </div>

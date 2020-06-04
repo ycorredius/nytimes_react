@@ -15,6 +15,7 @@ class BookContainer extends React.Component{
         } else {
         return(
             <div>
+                <h1>Past Best Seller Books</h1>
                 <ul>
                     <BestsellerPast books={this.props.books_past.data} handleClick={this.handleClick}/>
                 </ul>

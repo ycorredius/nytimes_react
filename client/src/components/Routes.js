@@ -12,7 +12,6 @@ const Routes = () => (
         <Switch>
             <Route exact path={"/bestsellers"} render={() => <BookContainer />} />
             <Route exact path={"/bestsellers/:bookId"} render={showProps => <BestsellerShow {...showProps}/>}/>
-            <Route exact path={"/"} render={() => <Home/>}/>
             <Route exact path={"/signup"} render={ routeProps => <Signup {...routeProps}/>} />
             <Route exact path={"/login"} render={routeProps => <Login {...routeProps}/> } />
             <Route exact path={"/dashboard"} render={() => <Dashboard /> } />

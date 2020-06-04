@@ -32,8 +32,13 @@ const authSessionStatus = (user) => {
   }
 }
 
+// const authSessionLogout = () => {
+//   return{
+//     type: types.LOGOUT
+//   }
+// }
+
 export const signup = (user) => {
-  const newUser = user
   return dispatch => {
     return axios.post(`${API_URL}/users`,{user},{withCredentials:true})
       .then(({data}) => { 
@@ -77,9 +82,7 @@ export const sessionStatus = () => {
 
 export const logout = () => {
   return dispatch => {
-    localStorage.clear();
-    return dispatch({
-      type: types.LOGOUT
-    });
+    return axios.delete(`${API_URL}/logout`)
+    .then(({data}) => dispatch({type: "LOGOUT"}))
   }
 }

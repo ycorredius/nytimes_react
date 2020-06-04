@@ -1,7 +1,9 @@
 import React from 'react';
 import Dashboard from '../components/Dashboard'
 import {connect} from 'react-redux';
-import {sessionStatus} from '../actions/auth/authActions'
+import {sessionStatus,logout} from '../actions/auth/authActions'
+import NavBar from '../components/navbar'
+
 
 
 class UserContainer extends React.Component {
@@ -9,9 +11,15 @@ class UserContainer extends React.Component {
 		this.props.sessionStatus()
 	}
 
+	handleLogout = () => {
+		this.props.logout()
+	  }
+
 	render(){
 		return(
-			<Dashboard />
+			<div>
+				<NavBar logged_in={this.props.logged_in} user={this.props.user} handleLogout={this.handleLogout	}/>
+			</div>
 		)
 	}
 
@@ -24,4 +32,4 @@ const mapStateToProps = ({authReducer}) => {
 	}
 }
 
-export default connect(mapStateToProps,{sessionStatus})(UserContainer);
+export default connect(mapStateToProps,{sessionStatus,logout})(UserContainer);

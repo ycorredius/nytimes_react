@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 
 
 function NavBar(props){
-
 	return (
 		<div>
 			<div>
@@ -13,14 +12,14 @@ function NavBar(props){
 				<Link to={'/dashboard'}>Dashboard</Link>
 			</div>
 			{props.logged_in? <p>
-				<Link to="/login" onClick={props.handleLogout}>Logout</Link>
+				<Link to="/" onClick={props.handleLogout}>Logout</Link>
 			</p>: null}
-				{props.logged_in? null: <p>
-					<Link to="/signup">Signup</Link>
-				</p>}
-				{props.logged_in? null: <p>
-					<Link to="/login">Login</Link>
-				</p>}
+			{props.logged_in? null: <p>
+				<Link to="/signup">Signup</Link>
+			</p>}
+			{props.logged_in? null: <p>
+				<Link to="/login">Login</Link>
+			</p>}
 		</div>
 		)
 }

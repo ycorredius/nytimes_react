@@ -60,10 +60,11 @@ export const authenticate = (credentials) => {
   return dispatch => {
     return axios.post(`${API_URL}/login`,{credentials},{withCredentials:true})
       .then(({data}) => {
+        if (data.logged_in){
         return dispatch(authSuccess(data))
-      })
-      .catch((errors) => {
-          dispatch(authFailure(errors))
+        }else{
+          return dispatch(authFailure(data.errors))
+        }
       })
   }
 }

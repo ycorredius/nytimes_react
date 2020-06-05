@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {authenticate} from '../../actions/auth/authActions'
+import ErrorCard from './errorCard'
 
 class Login extends React.Component {
   constructor(props){
@@ -22,13 +23,20 @@ class Login extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.authenticate(this.state)
-      .then(() => {
-        this.props.history.push("/dashboard")})
+      .then(res =>{
+        if(res.logged_in){
+          this.props.history.push("/dashboard")
+        } else{
+          alert(res.errors)
+          this.props.history.push("/bestsellers")
+        }
+      })
+      
   }
 
   render(){
     const {email,password} = this.state
-
+    
     return(
       <div>
         <h1>Login Here!</h1>

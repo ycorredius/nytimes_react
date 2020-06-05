@@ -12,6 +12,16 @@ export default (state = [], action) => {
                 ...state,
                 book: action.bookShow
             }
+        case types.LOAD_LIST:
+            return{
+                ...state,
+                list: action.list
+            }
+        case types.LOAD_CURRENT_BEST_SELLERS:
+            return{
+                ...state,
+                current_bestsellers: action.current_bestsellers
+            }
         default: 
             return state
     }

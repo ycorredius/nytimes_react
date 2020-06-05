@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  	resources :best_sellers
+	resources	:bestsellers_list, only: :index
+  	resources :best_sellers, only: [:index,:show]
 	resources :users, only: [:create, :show	]
 	post '/login', to: 'sessions#create'
 	delete '/logout', to: 'sessions#destroy'

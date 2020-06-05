@@ -16,6 +16,18 @@ export const showBestSellerBook = (bookShow) =>{
     }
 }
 
+export const loadList = (list) => {
+    return {
+        type: types.LOAD_LIST,
+        list: list
+    }
+}
+export const loadBestsellers = (currentBest) =>{
+    return {
+        type: types.LOAD_CURRENT_BEST_SELLERS,
+        current_bestsellers: currentBest
+    }
+}
 
 
 export const fetchNYTimesBooks = () => {
@@ -33,5 +45,21 @@ export const fetchBook = (bookData) => {
             .then(response => response.data)
             .then(res => {dispatch(showBestSellerBook(res))})
         }
+}
+export const fetchListCategory = () =>{
+    return dispatch => {
+        return axios.get(`${END_POINT}/bestsellers_list`)
+        .then(response=> response.data)
+        .then(({data}) => dispatch(loadList(data)))
+    }
+}
+
+
+export const fetchCurrentBestSellers = () => {
+    return dispatch => {
+        return axios.get (`https://api.nytimes.com/svc/books/v3/lists/current/family.json?api-key=XihJWvP2gaOgCgR3onpTKeXRp5LTVAQQ`)
+            .then(response => response.data)
+            .then(({results}) => dispatch(loadBestsellers(results)))
+    }
 }
 

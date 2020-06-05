@@ -1,10 +1,9 @@
 import React from 'react';
-import Home from '../components/Home';
 import Signup from '../components/auth/Signup';
 import Login from '../components/auth/Login';
 import BestsellerShow from '../components/nytimes_books/bestsellerShow';
 import Dashboard from './Dashboard';
-import { Switch, Route } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
 import BookContainer from '../containers/bookContainer'
 
 const Routes = () => (
@@ -15,6 +14,9 @@ const Routes = () => (
             <Route exact path={"/signup"} render={ routeProps => <Signup {...routeProps}/>} />
             <Route exact path={"/login"} render={routeProps => <Login {...routeProps}/> } />
             <Route exact path={"/dashboard"} render={() => <Dashboard /> } />
+            <Route exact path={"/"}>
+                <Redirect to='/bestsellers'/>
+            </Route>
         </Switch>
     </div>
 )

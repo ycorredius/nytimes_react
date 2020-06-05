@@ -19,8 +19,10 @@ class SessionsController < ApplicationController
   
 def is_logged_in?
     if logged_in? && current_user
+      options = {}
+      options[:include] = [:best_sellers]
       render json: {
-        user: current_user,
+        user: UserSerializer.new(current_user,options),
         logged_in: true
       }
     else

@@ -1,0 +1,2 @@
+class CurrentBestSeller < ApplicationRecord
+end

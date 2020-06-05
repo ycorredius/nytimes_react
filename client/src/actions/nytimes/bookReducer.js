@@ -22,6 +22,11 @@ export default (state = [], action) => {
                 ...state,
                 current_bestsellers: action.current_bestsellers
             }
+        case types.UPDATE_READ_LIST:
+            return{
+                ...state,
+                readList: action.readList
+            }
         default: 
             return state
     }

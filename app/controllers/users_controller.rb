@@ -10,30 +10,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    render json: @user
-  end
-
   def update
-    if @user.update(user_params)
-      render json: @user
-    else
-      render json: @user.errors, status: 400
-    end
-  end
-
-  def destroy
-    @user.destroy
-  end
-
-  def find
-   @user = User.find_by(email: params[:user][:email])
-   if @user
-     render json: @user
-   else
-     @errors = @user.errors.full_messages
-     render json: @errors
-   end
+    book = BestSeller.find_by(id: params["user"]["bookId"])
+    current_user.best_sellers.push(book)
+    render json: current_user.best_sellers
   end
 
   private
@@ -43,6 +23,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:firstName, :lastName, :email, :password, :password_confirmation)
+      params.require(:user).permit(:firstName, :lastName, :email, :password, :password_confirmation, :bookId)
     end
 end

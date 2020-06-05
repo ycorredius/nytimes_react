@@ -1,13 +1,20 @@
 import React from 'react';
-import { fetchBook, fetchNYTimesBooks } from '../../actions/nytimes/bookactions';
+import { fetchBook, addBestSellerToReadList} from '../../actions/nytimes/bookactions';
 import {connect} from 'react-redux';
 
 class BestsellerShow extends React.Component{
     constructor(props){
         super(props);
+
+        this.handleClick = this.handleClick.bind(this)
     }
     componentDidMount(){
         this.props.fetchBook(this.props.match.params.bookId)
+    }
+
+    handleClick() {
+        this.props.addBestSellerToReadList({bookId: this.props.book.data.id, id: this.props.userId})
+        this.props.history.push("/dashboard")
     }
 
     render(){
@@ -32,6 +39,8 @@ class BestsellerShow extends React.Component{
                 <p>First Chapter Link: {first_chapter_link === ""? "N/A": {first_chapter_link}}</p>
                 <p>Article Chapter Link: {article_chapter_link === ""? "N/A": {article_chapter_link}}</p>
                 <p>Sunday Review Link: {sunday_review_link === ""? "N/A": {sunday_review_link}}</p>
+                
+                <button onClick={this.handleClick}>Add Book To Read</button>
             </div>
             )
         }
@@ -41,8 +50,9 @@ class BestsellerShow extends React.Component{
 
     const mapStateToProps = (state) => {
         return{
-            book: state.bookReducer.book
+            book: state.bookReducer.book,
+            userId: state.authReducer.currentUser.id
         }
     }
 
-export default connect(mapStateToProps,{fetchBook})(BestsellerShow);
+export default connect(mapStateToProps,{fetchBook,addBestSellerToReadList})(BestsellerShow);

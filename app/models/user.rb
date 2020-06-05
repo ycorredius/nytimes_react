@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_many :best_sellers
     has_secure_password
 
     validates :firstName, presence: true

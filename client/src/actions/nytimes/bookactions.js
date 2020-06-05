@@ -29,6 +29,13 @@ export const loadBestsellers = (currentBest) =>{
     }
 }
 
+export const updateReadList = (readList) => {
+    return{
+        type: types.UPDATE_READ_LIST,
+        readList: readList
+    }
+}
+
 
 export const fetchNYTimesBooks = () => {
     return dispatch => {
@@ -63,3 +70,11 @@ export const fetchCurrentBestSellers = () => {
     }
 }
 
+
+export const addBestSellerToReadList = (user) => {
+    return dispatch => {
+        axios.put(`${END_POINT}/users/${user.id}`,{user},{withCredentials:true})
+        .then(response => response.data)
+        .then(res => dispatch(updateReadList(res)))
+    }
+}

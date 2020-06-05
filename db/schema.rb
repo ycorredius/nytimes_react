@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_30_152552) do
+ActiveRecord::Schema.define(version: 2020_06_05_151242) do
 
   create_table "best_sellers", force: :cascade do |t|
     t.string "author"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2020_05_30_152552) do
     t.integer "rank"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_best_sellers_on_user_id"
   end
 
   create_table "bestsellers_lists", force: :cascade do |t|
@@ -36,6 +38,18 @@ ActiveRecord::Schema.define(version: 2020_05_30_152552) do
     t.date "oldest_published_date"
     t.date "newest_published_date"
     t.string "updated"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "current_best_sellers", force: :cascade do |t|
+    t.integer "rank"
+    t.integer "rank_last_week"
+    t.string "title"
+    t.string "author"
+    t.string "publisher"
+    t.string "description"
+    t.string "book_image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -49,4 +63,5 @@ ActiveRecord::Schema.define(version: 2020_05_30_152552) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "best_sellers", "users"
 end

@@ -19,13 +19,21 @@ class BookContainer extends React.Component{
         } else {
         return(
             <div>
-                <h1>Past Best Seller Books</h1>
-                <ul>
+                <div class ="text-center text-5xl text-mono text-blue-700">
+                    <h1>Best Seller Books</h1>
+                </div>
                     <BestsellerBook books={this.props.current_bestsellers.books} handleClick={this.handleClick}/>
-                </ul>
-                <h1>Past Best Seller Books</h1>
+                <div class ="text-center text-5xl text-mono text-blue-700">
+                    <h1>Past Best Seller Books</h1>
+                </div>
                 <ul>
+                    <div class="grid grid-cols-3 ">
+                        <div class="col-span-1 bg-gray-400 h-10 text-center"> Title </div>
+                        <div class="col-span-1 bg-gray-400 h-10 text-center"> Author </div>
+                        <div class="col-span-1 bg-gray-400 h-10 text-center"> Info</div>
+                    </div>
                     <BestsellerPast books={this.props.books_past.data} handleClick={this.handleClick}/>
+                    
                 </ul>
                 
             </div>

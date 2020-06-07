@@ -14,7 +14,7 @@ class App extends React.Component{
 
   render() {
     return (
-      <div className="app">
+      <div class="bg-gray-200 h-screen">
         <Router>
             <div>
             <UserContainer/>
